@@ -1,2 +1,47 @@
 .progressbar {
+  display: flex;
+  align-items: center;
+  height: 2em;
+  width: 100%;
+  min-width: 4em;
+  border: solid 2px lightgray;
+  position: relative;
+  border-radius: 5px;
+}
+.progressbar > div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0;
+  background: linear-gradient(to top, #090, #0a0, #0c0, #0a0);
+  transition: width 0.5s linear;
+  z-index: -1;
+}
+.progressbar:after {
+  content: attr(data-progress) '%';
+  display: block;
+  margin: auto;
+}
+.progressbar__container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.progressbar__button {
+  min-width: 13em;
+  min-height: 2em;
+  border-radius: 5px;
+  margin: 15px auto 0;
+  padding: 0;
+  background-color: inherit;
+  font-size: 20px;
+  line-height: 26px;
+  font-weight: normal;
+  border: 1px solid gray;
+}
+.progressbar__button:hover {
+  cursor: pointer;
 }
