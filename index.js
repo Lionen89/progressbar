@@ -4,7 +4,7 @@ function progressBar(selector, delay) {
   this.step = 1;
   this.delay = delay;
 
-  this._run = () => {
+  this._start = () => {
     this.timer = setInterval(this._go, this.delay);
     this.filler.style.transitionDuration = this.delay + 'ms';
     return this;
@@ -14,7 +14,7 @@ function progressBar(selector, delay) {
     this.timer = false;
     return this;
   };
-  this.set = (val) => {
+  this._set = (val) => {
     val = parseInt(val);
     if (val >= 100) {
       val = 100;
@@ -25,16 +25,16 @@ function progressBar(selector, delay) {
     return this;
   };
   this._go = () => {
-    this.set(this._getProgress() + this.step);
+    this._set(this._getProgress() + this.step);
   };
   this.pause = () => {
     if (this.timer) this._stop();
-    else this._run();
+    else this._start();
     return this;
   };
   this._reset = () => {
     this._stop().set(0);
-    this._run();
+    this._start();
     return this;
   };
   this._getProgress = () => {
@@ -45,7 +45,7 @@ function progressBar(selector, delay) {
   this.button.addEventListener('click', () => {
     this._getProgress() === 100 ? this._reset() : this.pause();
   });
-  this._run();
+  this._start();
   return this;
 }
 
