@@ -33,7 +33,7 @@ function progressBar(selector, delay) {
     return this;
   };
   this._reset = () => {
-    this._stop().set(0);
+    this._stop()._set(0);
     this._start();
     return this;
   };
